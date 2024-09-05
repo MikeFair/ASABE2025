@@ -19,12 +19,12 @@ def find_white_balls(frame):
     # find contours in the mask
     contoursball, _ = cv2.findContours(blurred, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     # Filter contours by area
-    minA = 1000
-    maxA = 50000
+    minA = 500
+    maxA = 20000
     filteredContours = [cnt for cnt in contoursball if minA < cv2.contourArea(cnt) < maxA]
     # create a blank image to draw the contours on
     # filteredMask = np.zeros_like(mask_ball)  
-    cv2.drawContours(frame, contoursball, -1, (0, 255, 0), thickness= 5)
+    cv2.drawContours(frame, filteredContours, -1, (0, 255, 0), thickness= 5)
     
     return frame
     
